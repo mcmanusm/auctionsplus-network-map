@@ -138,17 +138,20 @@ function escapeHtml(s) {
   return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 }
 
-function agencyRadius(n) { return n === 0 ? 4 : 6 + Math.sqrt(n) * 4; }
+// Tighter scaling — bubbles sized for at-a-glance distinction, not domination
+function agencyRadius(n) {
+  if (n === 0) return 3;
+  return 3 + Math.sqrt(n) * 1.8;   // max assessor=12 -> ~9px, n=5 -> ~7px, n=1 -> ~5px
+}
 function agencyColor(n) {
   if (n === 0) return '#B8C5D1';
   if (n <= 2) return '#5BB3E8';
   if (n <= 5) return '#1E88D2';
   return '#0F2540';
 }
-// Buyer max is ~2000 — cap radius at 35 so the biggest don't swallow the map
 function buyerRadius(n) {
-  if (n === 0) return 3;
-  return Math.min(35, 4 + Math.sqrt(n) * 1.2);
+  if (n === 0) return 2;
+  return Math.min(18, 2 + Math.sqrt(n) * 0.55);  // n=2000 -> 18 capped, n=100 -> 7.5, n=10 -> 3.7
 }
 function buyerColor(n) {
   if (n <= 5)   return '#5BB3E8';
