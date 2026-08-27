@@ -126,10 +126,11 @@ let mode = 'agencies';   // 'agencies' or 'buyers'
 let view = 'clusters';   // 'clusters' or 'pins'
 
 const map = L.map('map').setView([-26.5, 134], 4);
-L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-  attribution: '© OpenStreetMap, © CARTO', maxZoom: 19
+L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png?key=cb1_268j_1_fb85caa52eb78ead893a0db1', {
+  attribution: '© OpenStreetMap, © CARTO',
+  maxZoom: 19
 }).addTo(map);
-
+  
 function fmt(n) {
   if (n >= 1000) return (n/1000).toFixed(1) + 'k';
   return Math.round(n).toString();
